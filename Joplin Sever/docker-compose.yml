@@ -1,6 +1,7 @@
 version: '3'
 services:
     db:
+        container_name: joplin-db
         image: postgres:latest
         ports:
             - "5432:5432"
@@ -10,6 +11,7 @@ services:
             - POSTGRES_USER=username
             - POSTGRES_DB=joplin
     app:
+        container_name: joplin-server
         image: joplin/server:latest
         depends_on:
             - db
