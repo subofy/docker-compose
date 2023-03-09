@@ -1,11 +1,14 @@
-version: '3'
+version: '3.9'
 services:
     db:
-        container_name: joplin-db
+        container_name: joplin-pg
         image: postgres:latest
         ports:
             - "5432:5432"
         restart: unless-stopped
+        volumes:
+            - /etc/timezone:/etc/timezone:ro
+            - /etc/localtime:/etc/localtime:ro
         environment:
             - POSTGRES_PASSWORD=passord
             - POSTGRES_USER=username
@@ -18,12 +21,15 @@ services:
         ports:
             - "22300:22300"
         restart: unless-stopped
+        volumes:
+            - /etc/timezone:/etc/timezone:ro
+            - /etc/localtime:/etc/localtime:ro
         environment:
             - APP_BASE_URL=https://domain:port/
             - DB_CLIENT=pg
             - POSTGRES_PASSWORD=password
             - POSTGRES_DATABASE=joplin
-            - POSTGRES_USER=liang
+            - POSTGRES_USER=username
             - POSTGRES_PORT=5432
             - POSTGRES_HOST=db
             - MAX_TIME_DRIFT=0
