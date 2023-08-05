@@ -1,6 +1,7 @@
 version: '3'
 services:
     adguardhome:
+        image: adguard/adguardhome
         container_name: adguardhome
         restart: unless-stopped
         volumes:
@@ -13,4 +14,7 @@ services:
             - '443:443/tcp'
             - '443:443/udp'
             - '3000:3000/tcp'
-        image: adguard/adguardhome
+            - ‘853:853/tcp'
+            - '853:853/udp'
+            
+        
